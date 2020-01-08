@@ -39,4 +39,6 @@ switch state
 	case wander
 		move in wavelike motion (~)
 		// done to maximize angle searched while travelling semi straight
+		
+*/
 				 
