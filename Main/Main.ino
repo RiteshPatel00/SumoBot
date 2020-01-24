@@ -41,3 +41,82 @@
 		// done to maximize angle searched while travelling semi straight
 
 */
+
+// variables
+int timer;
+enum States = {white, enemy, hunt, wander};
+enum Direction = {left, center, right, none};
+
+void setup() {
+  // setup code
+}
+
+boolean getDir(Ultrasonic left, Ultrasonic right) {
+  Direction dir;
+  if (ultrasonicLeft.getDist < 20) {
+    if (ultrasonicRight.getDist < 20) {
+      dir = right;
+    } else {
+      dir = left;
+    }
+  } else if (ultrasonicRight.getDist < 20) {
+    dir = center;
+  }
+  return enemyFound(left, right, dir);
+}
+
+boolean enemyFound(Ultrasonic left, Ultrasonic right, Direction dir) {
+  switch (dir) {
+    case left:
+      // enemy on left
+      state = enemy;
+      // set motors to soft turn left
+      motorLeft = 50;
+      motorRight = 75;
+      return True;
+    case right:
+      // enemy on right
+      state = enemy;
+      // set motors to soft turn right
+      motorLeft = 75;
+      motorRight = 50;
+      return True
+    case center:
+      // enemy in center
+      state = enemy;
+      // set motors to go straight
+      if (ultraRight.getDist() < 3) {
+        // pushing
+        motorLeft = 100;
+        motorRight =  100;
+      } else {
+        motorLeft = 75;
+        motorRight = 75;
+      }
+      return True;
+    }
+    return False;
+}
+
+void loop() {
+
+  switch (States) {
+    case white:
+      // add case if it sees white?
+      // currently turning
+      if (getDir(ultraLeft, ultraRight) ) {
+        // enemy found
+        // break;
+      } else if (system.time - (time to turn 90) > timer) {
+        state = wander;
+        motorLeft = 50;
+        motorRight = 50;
+      }
+      // else do nothing; continue turning
+      break;
+    case enemy:
+      //currently going towards enemy
+      
+  }
+
+}
