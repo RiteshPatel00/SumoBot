@@ -53,19 +53,19 @@ void setup() {
 
 boolean getDir(Ultrasonic left, Ultrasonic right) {
   Direction dir;
-  if (ultrasonicLeft.getDist < 20) {
-    if (ultrasonicRight.getDist < 20) {
+  if (left.getDist < 20) {
+    if (right.getDist < 20) {
       dir = right;
     } else {
       dir = left;
     }
-  } else if (ultrasonicRight.getDist < 20) {
+  } else if (right.getDist < 20) {
     dir = center;
   }
   return enemyFound(left, right, dir);
 }
 
-boolean enemyFound(Ultrasonic left, Ultrasonic right, Direction dir) {
+boolean enemyFound(Ultrasonic utraLeft, Ultrasonic ultraRight, Direction dir) {
   switch (dir) {
     case left:
       // enemy on left
@@ -98,6 +98,41 @@ boolean enemyFound(Ultrasonic left, Ultrasonic right, Direction dir) {
     return False;
 }
 
+boolean getDir(IR left, IR right) {
+  Direction dir;
+  if (left.isWhite(left)) {
+    if (right.isWhite(right) ) {
+      dir = center;
+    } else {
+      dir = left;
+    }
+  } else if (right.isWhite(right)) {
+    dir = right;
+  }
+  return whiteFound(dir);
+}
+
+boolean whiteFound(Direction dir) {
+  switch (dir) {
+    case left:
+      // white on left
+      state = white;
+      // set motors to hard turn right
+      motorLeft = 100;
+      motorRight = -100;
+      return True;
+    case right:
+      // white on right
+      state = white;
+      // set motors to hard turn left
+      motorLeft = -100;
+      motorRight = 100;
+      return True
+    }
+    // case center not needed since direction turned can be either
+    return False;
+}
+
 void loop() {
 
   switch (States) {
@@ -106,8 +141,8 @@ void loop() {
       // currently turning
       if (getDir(ultraLeft, ultraRight) ) {
         // enemy found
-        // break;
-      } else if (system.time - (time to turn 90) > timer) {
+        // do nothing else
+      } else if (system.time - (time to turn 180) > timer) {
         state = wander;
         motorLeft = 50;
         motorRight = 50;
@@ -115,7 +150,19 @@ void loop() {
       // else do nothing; continue turning
       break;
     case enemy:
-      //currently going towards enemy
+      // currently going towards enemy
+      // check for white; highest priority
+      if (getDir(ILeft, IRight) {
+        // white found
+        // start timer
+        timer = system.time;
+      } else if (getDir(ultraLeft, ultraRight) ) {
+        // check if enemy changed positions
+        // update state accordingly
+      } else {
+        // enemy lost
+        state = hunt;
+      }
       
   }
 
