@@ -1,5 +1,0 @@
-/*
- methods:
- - getDist()
-
- */
