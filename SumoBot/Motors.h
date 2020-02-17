@@ -10,7 +10,7 @@
 
 class Motors {
 public:
-	Motors(int, int, int, int);
+	Motors(int, int, int, int, int, int);
 
 	void softLeft();
 	void softRight();
@@ -22,9 +22,9 @@ public:
 	virtual ~Motors();
 
 private:
-	void cw(int, int, int);
-	void ccw(int, int, int);
-	void stop(int, int);
+	void cw(int, int, int, int);
+	void ccw(int, int, int, int);
+	void stop(int, int, int);
 };
 
 #endif /* MOTORS_H_ */

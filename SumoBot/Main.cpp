@@ -55,9 +55,35 @@ IR *ILeft, *IRight;
 
 void setup() {
 	// setup code
+	Serial.begin(9600);
+
+	// call constructors
 	ultraLeft = new NewPing(trigPin1, echoPin1, maxDist);
 	ultraRight = new NewPing(trigPin2, echoPin2, maxDist);
-	motors = new Motors(motor1Pin1, motor1Pin2, motor2Pin1, motor2Pin2);
+	motors = new Motors(motor1Pin1, motor1Pin2, motor1Enable,
+						motor2Pin1, motor2Pin2, motor2Enable);
+
+	// setup pins
+	setupPins();
+}
+
+void setupPins() {
+	// unnecessary?
+	/*
+	// ultrasonic
+	pinMode(trigPin1, OUTPUT);
+	pinMode(echoPin1, INPUT);
+	pinMode(trigPin2, OUTPUT);
+	pinMode(echoPin2, INPUT);
+	*/
+
+	// motors
+	pinMode(motor1Pin1, OUTPUT);
+	pinMode(motor1Pin2, OUTPUT);
+	pinMode(motor1Enable, OUTPUT);
+	pinMode(motor2Pin1, OUTPUT);
+	pinMode(motor2Pin2, OUTPUT);
+	pinMode(motor2Enable, OUTPUT);
 }
 
 bool getDir(NewPing *ultraLeft, NewPing *ultraRight) {
