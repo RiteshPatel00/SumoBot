@@ -49,15 +49,15 @@
 // variables
 int timer;
 States state;
-Motors motors;
+Motors *motors;
 NewPing *ultraLeft, *ultraRight;
-IR ILeft, IRight;
+IR *ILeft, *IRight;
 
 void setup() {
 	// setup code
 	ultraLeft = new NewPing(trigPin1, echoPin1, maxDist);
 	ultraRight = new NewPing(trigPin2, echoPin2, maxDist);
-
+	motors = new Motors(motor1Pin1, motor1Pin2, motor2Pin1, motor2Pin2);
 }
 
 bool getDir(NewPing *ultraLeft, NewPing *ultraRight) {
@@ -83,7 +83,7 @@ bool enemyFound(NewPing *utraLeft, NewPing *ultraRight, Direction dir) {
 		// set motors to soft turn left
 		//motorLeft = 50;
 		//motorRight = 75;
-		motors.softLeft();
+		motors->softLeft();
 		return true;
 	case right:
 		// enemy on right
@@ -91,7 +91,7 @@ bool enemyFound(NewPing *utraLeft, NewPing *ultraRight, Direction dir) {
 		// set motors to soft turn right
 		//motorLeft = 75;
 		//motorRight = 50;
-		motors.softRight();
+		motors->softRight();
 		return true;
 	case center:
 		// enemy in center
@@ -101,26 +101,26 @@ bool enemyFound(NewPing *utraLeft, NewPing *ultraRight, Direction dir) {
 			// pushing
 			//motorLeft = 100;
 			//motorRight =  100;
-			motors.push();
+			motors->forward(100);
 		} else {
 			//motorLeft = 75;
 			//motorRight = 75;
-			motors.forward();
+			motors->forward(75);
 		}
 		return true;
 	}
 	return false;
 }
 
-bool getDir(IR ILeft, IR IRight) {
+bool getDir(IR *ILeft, IR *IRight) {
 	Direction dir;
-	if (ILeft.isWhite()) {
-		if (IRight.isWhite()) {
+	if (ILeft->isWhite()) {
+		if (IRight->isWhite()) {
 			dir = center;
 		} else {
 			dir = left;
 		}
-	} else if (IRight.isWhite()) {
+	} else if (IRight->isWhite()) {
 		dir = right;
 	}
 	return whiteFound(dir);
@@ -134,7 +134,7 @@ bool whiteFound(Direction dir) {
 		// set motors to hard turn right
 		//motorLeft = 100;
 		//motorRight = -100;
-		motors.hardRight();
+		motors->hardRight();
 		return true;
 	case right:
 		// white on right
@@ -142,7 +142,7 @@ bool whiteFound(Direction dir) {
 		// set motors to hard turn left
 		//motorLeft = -100;
 		//motorRight = 100;
-		motors.hardLeft();
+		motors->hardLeft();
 		return true;
 	}
 	// case center not needed since direction turned can be either
@@ -162,7 +162,7 @@ void loop() {
 			state = wander;
 			//motorLeft = 50;
 			//motorRight = 50;
-			motors.wander();
+			motors->wander();
 		}
 		// else do nothing; continue turning
 		break;
