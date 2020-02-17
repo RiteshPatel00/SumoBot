@@ -50,30 +50,32 @@
 int timer;
 States state;
 Motors motors;
-Ultrasonic ultraLeft, ultraRight;
+NewPing *ultraLeft, *ultraRight;
 IR ILeft, IRight;
 
 void setup() {
 	// setup code
+	ultraLeft = new NewPing(trigPin1, echoPin1, maxDist);
+	ultraRight = new NewPing(trigPin2, echoPin2, maxDist);
+
 }
 
-bool getDir(Ultrasonic ultraLeft, Ultrasonic ultraRight) {
-	ultraLeft.getDist();
-
+bool getDir(NewPing *ultraLeft, NewPing *ultraRight) {
+	ultraLeft->ping_cm();
 	Direction dir;
-	if (ultraLeft.getDist() < 20) {
-		if (ultraRight.getDist() < 20) {
+	if (ultraLeft->ping_cm() < 20) {
+		if (ultraRight->ping_cm() < 20) {
 			dir = right;
 		} else {
 			dir = left;
 		}
-	} else if (ultraRight.getDist() < 20) {
+	} else if (ultraRight->ping_cm() < 20) {
 		dir = center;
 	}
 	return enemyFound(ultraLeft, ultraRight, dir);
 }
 
-bool enemyFound(Ultrasonic utraLeft, Ultrasonic ultraRight, Direction dir) {
+bool enemyFound(NewPing *utraLeft, NewPing *ultraRight, Direction dir) {
 	switch (dir) {
 	case left:
 		// enemy on left
@@ -95,7 +97,7 @@ bool enemyFound(Ultrasonic utraLeft, Ultrasonic ultraRight, Direction dir) {
 		// enemy in center
 		state = enemy;
 		// set motors to go straight
-		if (ultraRight.getDist() < 3) {
+		if (ultraRight->ping_cm() < 3) {
 			// pushing
 			//motorLeft = 100;
 			//motorRight =  100;

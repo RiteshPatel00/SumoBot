@@ -9,10 +9,10 @@
 #define MAIN_H_
 
 #include <Arduino.h>
+#include <NewPing.h>
 // #include <Arduino_FreeRTOS.h>
 // #include <EEPROM.h>
 #include "IR.h"
-#include "Ultrasonic.h"
 #include "Motors.h"
 
 // typedefs
@@ -25,12 +25,18 @@ enum Direction {
 
 
 // constants
+// ultrasonic
+const int trigPin1 = 1;
+const int echoPin1 = 2;
+const int trigPin2 = 3;
+const int echoPin2 = 4;
+const int maxDist = 20;
 // time to turn 90 degrees
 const int timeFor90 = 1000;
 
 // methods
-bool getDir(Ultrasonic, Ultrasonic);
-bool enemyFound(Ultrasonic, Ultrasonic, Direction);
+bool getDir(NewPing*, NewPing*);
+bool enemyFound(NewPing*, NewPing*, Direction);
 bool getDir(IR, IR);
 bool whiteFound(Direction);
 
