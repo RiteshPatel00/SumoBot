@@ -16,7 +16,7 @@ public:
 
 	virtual ~IR();
 private:
-	const int LED, signal;
+	int LED, signal;
 };
 
 #endif /* IR_H_ */
