@@ -1,8 +1,23 @@
+/*
+ * IR.cpp
+ *
+ *  Created on: Feb 16, 2020
+ *      Author: WinnieTrandinh
+ */
+
 #include "IR.h"
+#include <Arduino.h>
 
-IR::IR() {
-	// TODO Auto-generated constructor stub
+IR::IR(int LEDPin, int signalPin) {
+	LED = LEDPin;
+	signal = signalPin;
 
+	// setup pins
+	pinMode(LED, OUTPUT);
+	pinMode(signal, INPUT);
+
+	// turn on LED
+	digitalWrite(LED, HIGH);
 }
 
 IR::~IR() {
@@ -10,7 +25,6 @@ IR::~IR() {
 }
 
 bool IR::isWhite() {
-	// todo
-	return true;
+	return (digitalRead(signal) == HIGH);
 }
 

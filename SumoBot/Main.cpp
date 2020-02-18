@@ -45,7 +45,6 @@
 // #include <stdio.h>
 #include "Main.h"
 
-
 // variables
 int timer;
 States state;
@@ -54,36 +53,16 @@ NewPing *ultraLeft, *ultraRight;
 IR *ILeft, *IRight;
 
 void setup() {
-	// setup code
+	// setup connection
 	Serial.begin(9600);
 
 	// call constructors
 	ultraLeft = new NewPing(trigPin1, echoPin1, maxDist);
 	ultraRight = new NewPing(trigPin2, echoPin2, maxDist);
-	motors = new Motors(motor1Pin1, motor1Pin2, motor1Enable,
-						motor2Pin1, motor2Pin2, motor2Enable);
-
-	// setup pins
-	setupPins();
-}
-
-void setupPins() {
-	// unnecessary?
-	/*
-	// ultrasonic
-	pinMode(trigPin1, OUTPUT);
-	pinMode(echoPin1, INPUT);
-	pinMode(trigPin2, OUTPUT);
-	pinMode(echoPin2, INPUT);
-	*/
-
-	// motors
-	pinMode(motor1Pin1, OUTPUT);
-	pinMode(motor1Pin2, OUTPUT);
-	pinMode(motor1Enable, OUTPUT);
-	pinMode(motor2Pin1, OUTPUT);
-	pinMode(motor2Pin2, OUTPUT);
-	pinMode(motor2Enable, OUTPUT);
+	motors = new Motors(motor1Pin1, motor1Pin2, motor1Enable, motor2Pin1,
+			motor2Pin2, motor2Enable);
+	ILeft = new IR(LED1Pin, signal1Pin);
+	IRight = new IR(LED2Pin, signal2Pin);
 }
 
 bool getDir(NewPing *ultraLeft, NewPing *ultraRight) {
@@ -195,19 +174,22 @@ void loop() {
 	case enemy:
 		// currently going towards enemy
 		// check for white; highest priority
-	if (getDir(ILeft, IRight) ) {
-				// white found
-				// start timer
-				timer = millis();
-			}
-		else if (getDir(ultraLeft, ultraRight) ) {
+		if (getDir(ILeft, IRight)) {
+			// white found
+			// start timer
+			timer = millis();
+		} else if (getDir(ultraLeft, ultraRight)) {
 			// check if enemy changed positions
 			// update state accordingly
 		} else {
 			// enemy lost
 			state = hunt;
 		}
-
+		// finish
+		break;
+	case test:
+		// testing code here
+		break;
 	}
 
 }

@@ -5,22 +5,18 @@
  *      Author: WinnieTrandinh
  */
 
-/*
- methods:
- - isWhite()
-
- */
-
 #ifndef IR_H_
 #define IR_H_
 
 class IR {
 public:
-	IR();
+	IR(int, int);
 
 	bool isWhite();
 
 	virtual ~IR();
+private:
+	const int LED, signal;
 };
 
 #endif /* IR_H_ */

@@ -10,10 +10,6 @@
 #include <Arduino.h>
 #include "Motors.h"
 
-// motor 1 = right
-// motor 2 = left
-int m1p1, m1p2, m1e, m2p1, m2p2, m2e;
-
 Motors::Motors(int pin1, int pin2, int enable1, int pin3, int pin4, int enable2) {
 	m1p1 = pin1;
 	m1p2 = pin2;
@@ -22,9 +18,17 @@ Motors::Motors(int pin1, int pin2, int enable1, int pin3, int pin4, int enable2)
 	m2p2 = pin4;
 	m2e = enable2;
 
+	// setup pins
+	pinMode(m1p1, OUTPUT);
+	pinMode(m1p2, OUTPUT);
+	pinMode(m1e, OUTPUT);
+	pinMode(m2p1, OUTPUT);
+	pinMode(m2p2, OUTPUT);
+	pinMode(m2e, OUTPUT);
+
 	// reset pins
-	stop(pin1, pin2, enable1);
-	stop(pin3, pin4, enable2);
+	stop(m1p1, m1p2, m1e);
+	stop(m2p1, m2p2, m2e);
 }
 
 Motors::~Motors() {
