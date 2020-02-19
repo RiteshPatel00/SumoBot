@@ -14,8 +14,8 @@ public:
 
 	void softLeft();
 	void softRight();
-	void hardLeft();
-	void hardRight();
+	void hardLeft(int);
+	void hardRight(int);
 	void forward(int);
 	void wander();
 

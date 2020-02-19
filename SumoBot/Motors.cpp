@@ -70,18 +70,18 @@ void Motors::softRight() {
 	ccw(m2p1, m2p2, m2e, 75);
 }
 
-void Motors::hardLeft() {
+void Motors::hardLeft(int val) {
 	// motorLeft = -100;
 	// motorRight = 100;
-	cw(m1p1, m1p2, m1e, 100);
-	cw(m2p1, m2p2, m2e, 100);
+	cw(m1p1, m1p2, m1e, val);
+	cw(m2p1, m2p2, m2e, val);
 }
 
-void Motors::hardRight() {
+void Motors::hardRight(int val) {
 	// motorLeft = 100;
 	// motorRight = -100;
-	ccw(m1p1, m1p2, m1e, 100);
-	ccw(m2p1, m2p2, m2e, 100);
+	ccw(m1p1, m1p2, m1e, val);
+	ccw(m2p1, m2p2, m2e, val);
 }
 
 void Motors::forward(int val) {
