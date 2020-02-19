@@ -37,15 +37,15 @@ const int maxDist = 20;
 
 // motors
 // digital output
-const int motor1Pin1 = 5;
-const int motor1Pin2 = 6;
+const int motor1Pin1 = 10;
+const int motor1Pin2 = 11;
 // pmw digital output
-const int motor1Enable = 6;
+const int motor1Enable = 9;
 // digital output
-const int motor2Pin1 = 7;
-const int motor2Pin2 = 8;
+const int motor2Pin1 = 13;
+const int motor2Pin2 = 14;
 // pmw digital output
-const int motor2Enable = 9;
+const int motor2Enable = 12;
 // time to turn 90 degrees in milliseconds
 const int timeFor90 = 1000;
 
