@@ -38,6 +38,7 @@ Motors::~Motors() {
 // input pwm off 0-100 scale
 void Motors::cw(int pin1, int pin2, int enable, int val) {
 	val = (int) ((val/100.0)*255);
+	//Serial.print(pin1);
 	digitalWrite(pin1, HIGH);
 	digitalWrite(pin2, LOW);
 	analogWrite(enable, val);

@@ -46,6 +46,7 @@
 
 void setup() {
 	// setup connection
+	// 115200 rate?
 	Serial.begin(9600);
 
 	// call constructors
@@ -57,6 +58,10 @@ void setup() {
 	IRight = new IR(LED2Pin, signal2Pin);
 
 	updateStates(test);
+
+	pinMode(trigPin1, OUTPUT);
+	pinMode(echoPin1, INPUT);
+	//pinMode(7, OUTPUT);
 }
 
 void updateStates(States state) {
@@ -263,11 +268,42 @@ void loop() {
 		break;
 	case test:
 		// testing code here
-		Serial.print(F("Hello"));
+		Serial.print(F("foobar"));
 
-		motors->forward(100);
+		//motors->forward(5);
+		//delay(2000);
+		//motors->stop();
+		//delay(2000);
+		/*
+		motors->cw(motor2Pin1, motor2Pin2, motor2Enable, 100);
 		delay(2000);
-		motors->stop();
+		motors->ccw(motor2Pin1, motor2Pin2, motor2Enable, 50);
+		delay(2000);
+		 */
+
+		Serial.print(ultraLeft->ping_cm() );
+		// ultraLeft->ping_result
+
+		/*
+		digitalWrite(trigPin1, HIGH);
+		delayMicroseconds(10);
+		digitalWrite(trigPin1, LOW);
+
+		Serial.print(pulseIn(echoPin1, HIGH));
+*/
+		/*
+		digitalWrite(7, LOW);
+		delay(1000);
+		digitalWrite(7, HIGH);
+		delay(1000);
+*/
+
+
+		//Serial.print(ILeft->isWhite() );
+
+		Serial.print('\n');
+		delay(1000);
+
 		break;
 	}
 
