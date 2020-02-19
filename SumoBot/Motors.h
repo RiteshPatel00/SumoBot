@@ -18,6 +18,7 @@ public:
 	void hardRight(int);
 	void forward(int);
 	void wander();
+	void stop();
 
 	virtual ~Motors();
 

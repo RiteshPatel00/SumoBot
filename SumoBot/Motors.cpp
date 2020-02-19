@@ -51,8 +51,8 @@ void Motors::ccw(int pin1, int pin2, int enable, int val) {
 }
 
 void Motors::stop(int pin1, int pin2, int enable) {
-	digitalWrite(pin1, 0);
-	digitalWrite(pin2, 0);
+	digitalWrite(pin1, LOW);
+	digitalWrite(pin2, LOW);
 	analogWrite(enable, 0);
 }
 
@@ -92,4 +92,9 @@ void Motors::forward(int val) {
 void Motors::wander() {
 	// motorLeft = 50;
 	// motorRight = 50;
+}
+
+void Motors::stop() {
+	stop(m1p1,m1p2,m1e);
+	stop(m2p1,m2p2,m2e);
 }

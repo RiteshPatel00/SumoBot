@@ -68,7 +68,7 @@ Motors *motors;
 NewPing *ultraLeft, *ultraRight;
 IR *ILeft, *IRight;
 
-// methods
+// methods interface
 void updateStates(States);
 void updateDir(Direction);
 bool getDir(NewPing*, NewPing*);

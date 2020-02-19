@@ -49,14 +49,14 @@ void setup() {
 	Serial.begin(9600);
 
 	// call constructors
-	// states = new LinkedList<States>;
-	// prevDir = new LinkedList<Direction>;
 	ultraLeft = new NewPing(trigPin1, echoPin1, maxDist);
 	ultraRight = new NewPing(trigPin2, echoPin2, maxDist);
-	motors = new Motors(motor1Pin1, motor1Pin2, motor1Enable, motor2Pin1,
-			motor2Pin2, motor2Enable);
+	motors = new Motors(motor1Pin1, motor1Pin2, motor1Enable,
+						motor2Pin1,motor2Pin2, motor2Enable);
 	ILeft = new IR(LED1Pin, signal1Pin);
 	IRight = new IR(LED2Pin, signal2Pin);
+
+	updateStates(test);
 }
 
 void updateStates(States state) {
@@ -81,12 +81,12 @@ bool getDir(NewPing *ultraLeft, NewPing *ultraRight) {
 	Direction dir;
 	if (ultraLeft->ping_cm() < 20) {
 		if (ultraRight->ping_cm() < 20) {
-			updateDir(right);
+			updateDir(center);
 		} else {
 			updateDir(left);
 		}
 	} else if (ultraRight->ping_cm() < 20) {
-		updateDir(center);
+		updateDir(right);
 	} else {
 		updateDir(none);
 	}
@@ -157,7 +157,10 @@ bool whiteFound(Direction dir) {
 		// motorRight = -100;
 		motors->hardRight(100);
 		return true;
-	case right:
+	case none:
+		// not at white line so do nothing
+		return false;
+	default:
 		// white on right
 		updateStates(white);
 		// set motors to hard turn left
@@ -260,6 +263,11 @@ void loop() {
 		break;
 	case test:
 		// testing code here
+		Serial.print(F("Hello"));
+
+		motors->forward(100);
+		delay(2000);
+		motors->stop();
 		break;
 	}
 
