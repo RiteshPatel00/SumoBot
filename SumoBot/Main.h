@@ -25,13 +25,13 @@ enum Direction {
 
 // ultrasonic
 // digital output
-const int trigPin1 = 1;
+const int trigPin1 = A1;
 // analog input
-const int echoPin1 = 19;
+const int echoPin1 = A0;
 // digital output
-const int trigPin2 = 2;
+const int trigPin2 = A2;
 // digital input
-const int echoPin2 = 5;
+const int echoPin2 = A3;
 // distance in cm						******* change ********
 const int maxDist = 20;
 
@@ -51,13 +51,13 @@ const int timeFor90 = 1000;
 
 // IR
 // digital output
-const int LED1Pin = 8;
+const int LED1Pin = 10;
 // digital input
-const int signal1Pin = 6;
+const int signal1Pin = 11;
 // digital output
-const int LED2Pin = 15;
+const int LED2Pin = 12;
 // digital input
-const int signal2Pin = 7;
+const int signal2Pin = 13;
 
 // miscellaneous
 int timer;
