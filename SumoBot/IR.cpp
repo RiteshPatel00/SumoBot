@@ -8,16 +8,11 @@
 #include "IR.h"
 #include <Arduino.h>
 
-IR::IR(int LEDPin, int signalPin) {
-	LED = LEDPin;
+IR::IR(int signalPin) {
 	signal = signalPin;
 
-	// setup pins
-	pinMode(LED, OUTPUT);
+	// setup pin
 	pinMode(signal, INPUT);
-
-	// turn on LED
-	digitalWrite(LED, HIGH);
 }
 
 IR::~IR() {
@@ -25,6 +20,6 @@ IR::~IR() {
 }
 
 bool IR::isWhite() {
-	return (digitalRead(signal) == HIGH);
+	return (digitalRead(signal) == LOW);
 }
 

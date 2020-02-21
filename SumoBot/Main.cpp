@@ -54,8 +54,8 @@ void setup() {
 	ultraRight = new NewPing(trigPin2, echoPin2, maxDist);
 	motors = new Motors(motor1Pin1, motor1Pin2, motor1Enable,
 						motor2Pin1,motor2Pin2, motor2Enable);
-	ILeft = new IR(LED1Pin, signal1Pin);
-	IRight = new IR(LED2Pin, signal2Pin);
+	ILeft = new IR(signal1Pin);
+	IRight = new IR(signal2Pin);
 
 	updateStates(test);
 
@@ -271,23 +271,39 @@ void loop() {
 		Serial.print(F("foobar"));
 
 		// motors test
-		//motors->forward(5);
-		//delay(2000);
-		//motors->stop();
-		//delay(2000);
 
+		/*
 		motors->cw(motor2Pin1, motor2Pin2, motor2Enable, 100);
 		delay(2000);
 		motors->ccw(motor2Pin1, motor2Pin2, motor2Enable, 50);
 		delay(2000);
+		 */
 
-
+		/*
 		motors->cw(motor1Pin1, motor1Pin2, motor1Enable, 100);
 		delay(2000);
 		motors->ccw(motor1Pin1, motor1Pin2, motor1Enable, 50);
 		delay(2000);
+		 */
+
+		/*
+		//motors->forward(100);
+		motors->hardLeft(100);
+		delay(2000);
+		motors->stop();
+		delay(2000);
+		*/
+
 		// ultrasonic test
-		// Serial.print(ultraLeft->ping_cm() );
+		//Serial.print("Ultrasonic: " + ultraLeft->ping_cm() );
+		/*
+		Serial.println(ultraLeft->ping_cm());
+		if (ultraLeft->ping_cm() < 10 && ultraLeft->ping_cm() != 0) {
+			motors->forward(50);
+		} else {
+			motors->stop();
+		}
+		*/
 
 		// LED test
 		/*
@@ -295,12 +311,21 @@ void loop() {
 		delay(1000);
 		digitalWrite(7, HIGH);
 		delay(1000);
-		 */
+		*/
 
 		// IR test
-		//Serial.print(ILeft->isWhite() );
+		//Serial.print("IR sensor: " + ILeft->isWhite() );
+		/*
+		bool foo = ILeft->isWhite();
+		if (foo) {
+			motors->stop();
+		} else {
+			motors->forward(50);
+		}
+		Serial.println(foo);
+		*/
 
-		Serial.print('\n');
+		//Serial.print('\n');
 		// delay(1000);
 
 		break;

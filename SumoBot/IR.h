@@ -10,13 +10,13 @@
 
 class IR {
 public:
-	IR(int, int);
+	IR(int);
 
 	bool isWhite();
 
 	virtual ~IR();
 private:
-	int LED, signal;
+	int signal;
 };
 
 #endif /* IR_H_ */

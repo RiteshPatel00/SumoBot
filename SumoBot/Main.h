@@ -26,7 +26,7 @@ enum Direction {
 // ultrasonic
 // digital output
 const int trigPin1 = A1;
-// analog input
+// digital input
 const int echoPin1 = A0;
 // digital output
 const int trigPin2 = A2;
@@ -39,23 +39,19 @@ const int maxDist = 20;
 // digital output
 const int motor1Pin1 = 2;
 const int motor1Pin2 = 3;
-// pmw digital output
+// pwm digital output
 const int motor1Enable = 6;
 // digital output
 const int motor2Pin1 = 4;
 const int motor2Pin2 = 5;
-// pmw digital output
+// pwm digital output
 const int motor2Enable = 9;
-// time to turn 90 degrees in milliseconds
+// time to turn 90 degrees in milliseconds			******* change *******
 const int timeFor90 = 1000;
 
 // IR
-// digital output
-const int LED1Pin = 10;
 // digital input
 const int signal1Pin = 11;
-// digital output
-const int LED2Pin = 12;
 // digital input
 const int signal2Pin = 13;
 
