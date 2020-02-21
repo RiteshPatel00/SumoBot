@@ -18,6 +18,8 @@ Motors::Motors(int pin1, int pin2, int enable1, int pin3, int pin4, int enable2)
 	m2p2 = pin4;
 	m2e = enable2;
 
+	period = 2000;
+
 	// setup pins
 	pinMode(m1p1, OUTPUT);
 	pinMode(m1p2, OUTPUT);
@@ -90,8 +92,9 @@ void Motors::forward(int val) {
 }
 
 void Motors::wander() {
-	// motorLeft = 50;
-	// motorRight = 50;
+	double val = 25*cos( (2*PI)/period * millis() );
+	cw(m1p1, m1p2, m1e, (int)75+val);
+	ccw(m2p1, m2p2, m2e, (int)75-val);
 }
 
 void Motors::stop() {

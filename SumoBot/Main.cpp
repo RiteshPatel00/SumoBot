@@ -249,7 +249,7 @@ void loop() {
 		// check for enemy,
 		// check if 360 deg turn complete if hunting
 
-		// currently turning
+		// currently turning or wandering
 		if (getDir(ILeft, IRight)) {
 			// white found
 			// state updated to white
@@ -264,11 +264,15 @@ void loop() {
 			// motorLeft = 50;
 			// motorRight = 50;
 			motors->wander();
+		} else {
+			// currently wandering
+			// update motor values to wander
+			motors->wander();
 		}
 		break;
 	case test:
 		// testing code here
-		Serial.print(F("foobar"));
+		// Serial.print("foobar");
 
 		// motors test
 

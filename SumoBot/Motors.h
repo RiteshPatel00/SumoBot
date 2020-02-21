@@ -26,6 +26,7 @@ private:
 	// motor 1 = right
 	// motor 2 = left
 	int m1p1, m1p2, m1e, m2p1, m2p2, m2e;
+	float period;
 
 	void cw(int, int, int, int);
 	void ccw(int, int, int, int);
