@@ -18,8 +18,6 @@ Motors::Motors(int pin1, int pin2, int enable1, int pin3, int pin4, int enable2)
 	m2p2 = pin4;
 	m2e = enable2;
 
-	period = 2000;
-
 	// setup pins
 	pinMode(m1p1, OUTPUT);
 	pinMode(m1p2, OUTPUT);
