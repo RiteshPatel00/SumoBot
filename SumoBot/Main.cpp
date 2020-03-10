@@ -271,17 +271,14 @@ void loop() {
 		}
 		break;
 	case test:
-		// testing code here
-		// Serial.print("foobar");
 
-		// motors test
 
-		/*
-		motors->cw(motor2Pin1, motor2Pin2, motor2Enable, 100);
-		delay(2000);
-		motors->ccw(motor2Pin1, motor2Pin2, motor2Enable, 50);
-		delay(2000);
-		 */
+
+//		motors->cw(motor2Pin1, motor2Pin2, motor2Enable, 100);
+//		delay(2000);
+//		motors->ccw(motor2Pin1, motor2Pin2, motor2Enable, 50);
+//		delay(2000);
+
 
 		/*
 		motors->cw(motor1Pin1, motor1Pin2, motor1Enable, 100);
@@ -290,24 +287,20 @@ void loop() {
 		delay(2000);
 		 */
 
-		/*
-		//motors->forward(100);
-		motors->hardLeft(100);
-		delay(2000);
-		motors->stop();
-		delay(2000);
-		*/
+
+//		motors->forward(100);
+//		motors->hardLeft(100);
+//		delay(2000);
+//		motors->stop();
+//		delay(2000);
+
 
 		// ultrasonic test
-		//Serial.print("Ultrasonic: " + ultraLeft->ping_cm() );
-		/*
-		Serial.println(ultraLeft->ping_cm());
-		if (ultraLeft->ping_cm() < 10 && ultraLeft->ping_cm() != 0) {
-			motors->forward(50);
-		} else {
-			motors->stop();
-		}
-		*/
+
+//
+//		Serial.println(ultraLeft->ping_cm());
+
+
 
 		// LED test
 		/*
@@ -317,20 +310,16 @@ void loop() {
 		delay(1000);
 		*/
 
-		// IR test
-		//Serial.print("IR sensor: " + ILeft->isWhite() );
-		/*
-		bool foo = ILeft->isWhite();
-		if (foo) {
-			motors->stop();
-		} else {
-			motors->forward(50);
-		}
-		Serial.println(foo);
-		*/
+		// IR test and ultra test
 
-		//Serial.print('\n');
-		// delay(1000);
+
+		bool foo = ILeft->isWhite();
+		if (foo || ultraLeft->ping_cm() < 10 && ultraLeft->ping_cm() != 0) {
+			motors->cw(motor1Pin1, motor1Pin2, motor1Enable, 50);
+		} else {
+			motors->ccw(motor1Pin1, motor1Pin2, motor1Enable, 50);
+		}
+		delay(3000);
 
 		break;
 	}
