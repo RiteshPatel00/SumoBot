@@ -297,9 +297,31 @@ void loop() {
 
 		// ultrasonic test
 
-//
-//		Serial.println(ultraLeft->ping_cm());
+		Serial.print("Ultrasonic Left: ");
+		Serial.print(ultraLeft->ping_cm() );
+		Serial.print("   Ultrasonic Right: ");
+		Serial.print(ultraRight->ping_cm());
 
+		boolean leftWhite = ILeft->isWhite();
+		boolean rightWhite = IRight->isWhite();
+
+		/*
+		if (rightWhite) {
+			Serial.print("foo");
+		}
+		if (leftWhite) {
+			Serial.print("bar");
+		}
+		*/
+
+		// IR test
+		Serial.print("   IR Left: ");
+		Serial.print(leftWhite);
+		Serial.print("   IR Right: ");
+		Serial.print(rightWhite);
+		Serial.println();
+
+		//delay(500);
 
 
 		// LED test
@@ -312,7 +334,7 @@ void loop() {
 
 		// IR test and ultra test
 
-
+		/*
 		bool foo = ILeft->isWhite();
 		if (foo || ultraLeft->ping_cm() < 10 && ultraLeft->ping_cm() != 0) {
 			motors->cw(motor1Pin1, motor1Pin2, motor1Enable, 50);
@@ -320,6 +342,7 @@ void loop() {
 			motors->ccw(motor1Pin1, motor1Pin2, motor1Enable, 50);
 		}
 		delay(3000);
+		*/
 
 		break;
 	}
